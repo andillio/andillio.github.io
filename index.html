@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your Name — Personal Website</title>
+  <meta name="description" content="Personal website of Your Name: research, projects, publications, CV, and contact." />
+  <meta name="theme-color" content="#0ea5e9" />
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Your Name — Personal Website" />
+  <meta property="og:description" content="Research, projects, publications, CV, and contact." />
+  <meta property="og:image" content="/assets/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Favicon (replace with your own) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🌌</text></svg>">
+
+  <style>
+    :root {
+      --bg: #0b0c10;
+      --panel: #11141a;
+      --text: #e6edf3;
+      --muted: #9aa4b2;
+      --brand: #0ea5e9;
+      --brand-2: #22d3ee;
+      --card: #0f131a;
+      --ring: rgba(14,165,233,0.5);
+      color-scheme: dark light;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #ffffff;
+        --panel: #f6f7f9;
+        --text: #0b1220;
+        --muted: #4b5563;
+        --card: #ffffff;
+      }
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, Noto Sans, "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1200px 700px at 80% -10%, rgba(14,165,233,0.12), transparent 60%),
+                  radial-gradient(900px 600px at -10% 20%, rgba(34,211,238,0.12), transparent 60%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: var(--brand); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { max-width: 1024px; margin: 0 auto; padding: 24px; }
+
+    /* Header */
+    header { position: sticky; top: 0; backdrop-filter: saturate(180%) blur(8px); background: color-mix(in oklab, var(--bg) 86%, transparent); border-bottom: 1px solid color-mix(in oklab, var(--text) 10%, transparent); z-index: 40; }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .brand { display:flex; align-items:center; gap:10px; font-weight: 700; letter-spacing: .2px; }
+    .brand .dot { width:10px; height:10px; border-radius:999px; background: linear-gradient(135deg, var(--brand), var(--brand-2)); box-shadow: 0 0 0 4px var(--ring); }
+    .nav a { color: var(--text); opacity: .9; }
+
+    /* Hero */
+    .hero { display:grid; grid-template-columns: 1.3fr .7fr; gap: 32px; align-items: center; padding: 48px 0; }
+    .hero h1 { font-size: clamp(2rem, 4vw, 3rem); line-height: 1.15; margin: 0 0 12px; }
+    .subtitle { color: var(--muted); margin: 0 0 16px; }
+    .actions { display:flex; gap: 12px; flex-wrap: wrap; }
+    .btn { display:inline-flex; gap:10px; align-items:center; padding: 10px 14px; border-radius: 12px; border: 1px solid color-mix(in oklab, var(--text) 10%, transparent); background: linear-gradient(180deg, color-mix(in oklab, var(--panel) 90%, transparent), color-mix(in oklab, var(--card) 80%, transparent)); color: var(--text); font-weight: 600; }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,0,0,.15); text-decoration: none; }
+    .btn.primary { background: linear-gradient(135deg, var(--brand), var(--brand-2)); color: #001018; border: none; }
+    .avatar {
+      width: 180px; aspect-ratio: 1/1; border-radius: 20px; overflow: hidden; border: 1px solid color-mix(in oklab, var(--text) 10%, transparent);
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+      justify-self: center;
+    }
+    .avatar img { width:100%; height:100%; object-fit: cover; display:block; }
+
+    /* Sections */
+    section { padding: 32px 0; }
+    h2 { font-size: clamp(1.5rem, 2.5vw, 2rem); margin: 0 0 12px; }
+    .muted { color: var(--muted); }
+
+    /* Cards grid */
+    .grid { display:grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
+    .card { grid-column: span 12; background: linear-gradient(180deg, color-mix(in oklab, var(--panel) 88%, transparent), color-mix(in oklab, var(--card) 88%, transparent)); padding: 18px; border-radius: 16px; border: 1px solid color-mix(in oklab, var(--text) 10%, transparent); }
+    .card h3 { margin: 0 0 6px; font-size: 1.1rem; }
+    .card p { margin: 0; color: var(--muted); }
+    .pill { display:inline-block; font-size: .8rem; padding: 4px 8px; border-radius: 999px; border:1px solid color-mix(in oklab, var(--text) 10%, transparent); margin-right: 6px; }
+
+    /* Resume block */
+    .resume { display:flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+
+    /* Footer */
+    footer { padding: 40px 0; color: var(--muted); }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; text-align: center; }
+      .actions { justify-content: center; }
+      .avatar { order: -1; }
+    }
+    @media (min-width: 640px) {
+      .card.span-6 { grid-column: span 6; }
+      .card.span-4 { grid-column: span 4; }
+    }
+
+    /* Skip link accessibility */
+    .skip-link { position: absolute; left: -999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+    .skip-link:focus { left: 16px; top: 16px; width: auto; height: auto; padding: 8px 12px; background: #fff; color: #000; border-radius: 8px; }
+
+    /* Theme toggle */
+    .toggle { cursor: pointer; border: 1px solid color-mix(in oklab, var(--text) 10%, transparent); border-radius: 12px; padding: 8px 12px; background: color-mix(in oklab, var(--panel) 92%, transparent); }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <span class="dot" aria-hidden="true"></span>
+        <a href="#" aria-label="Home">Your Name</a>
+      </div>
+      <nav aria-label="Primary">
+        <a href="#about">About</a>
+        <span aria-hidden="true"> · </span>
+        <a href="#projects">Projects</a>
+        <span aria-hidden="true"> · </span>
+        <a href="#publications">Publications</a>
+        <span aria-hidden="true"> · </span>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button id="themeToggle" class="toggle" aria-pressed="false" aria-label="Toggle theme">🌗</button>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <section class="hero" id="home">
+      <div>
+        <h1>Hi, I'm <span style="background:linear-gradient(135deg,var(--brand),var(--brand-2)); -webkit-background-clip:text; background-clip:text; color: transparent;">Your Name</span>.</h1>
+        <p class="subtitle">I build things for science and the web. Currently <strong>Role @ Organization</strong>. Formerly at <strong>Previous Org</strong>. My interests include <em>cosmology</em>, <em>numerical methods</em>, and <em>data visualization</em>.</p>
+        <div class="actions">
+          <a class="btn primary" href="#projects">View Projects</a>
+          <a class="btn" href="/assets/cv.pdf" download>Download CV</a>
+          <a class="btn" href="https://github.com/yourname" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn" href="https://scholar.google.com" target="_blank" rel="noopener">Google Scholar</a>
+        </div>
+      </div>
+      <div class="avatar" aria-hidden="true">
+        <!-- Replace with your own image in /assets/profile.jpg -->
+        <img src="https://images.unsplash.com/photo-1520975916090-3105956dac38?q=80&w=600&auto=format&fit=crop" alt="Profile" />
+      </div>
+    </section>
+
+    <section id="about">
+      <h2>About</h2>
+      <p class="muted">Write a few sentences about yourself. Mention your research interests, current role, and what you're looking for (e.g., collaborations, postdoc opportunities, consulting).</p>
+      <div class="resume" role="list">
+        <span class="pill" role="listitem">Numerical Cosmology</span>
+        <span class="pill" role="listitem">Ultralight Dark Matter</span>
+        <span class="pill" role="listitem">Python</span>
+        <span class="pill" role="listitem">C++</span>
+        <span class="pill" role="listitem">Open Source</span>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <p class="muted">A sampling of open-source and research projects. Replace with your own.</p>
+      <div class="grid">
+        <article class="card span-6">
+          <h3>Wave Dark Matter Simulations</h3>
+          <p>High-performance Schrödinger–Poisson solvers exploring ultralight dark matter phenomenology.</p>
+          <p><a href="https://github.com/yourname/yourproject" target="_blank" rel="noopener">Repository →</a></p>
+        </article>
+        <article class="card span-6">
+          <h3>PTA Time-Delay Analysis</h3>
+          <p>Tools for analyzing pulsar networks to probe de Broglie-scale time delays.</p>
+          <p><a href="https://github.com/yourname/pta-tools" target="_blank" rel="noopener">Repository →</a></p>
+        </article>
+        <article class="card span-4">
+          <h3>Stochastic Stellar Lensing</h3>
+          <p>Numerical experiments for stellar microlensing by fuzzy halos.</p>
+          <p><a href="#" target="_blank" rel="noopener">Paper / Code →</a></p>
+        </article>
+        <article class="card span-4">
+          <h3>Field Moment Expansion</h3>
+          <p>Approximate quantum corrections to classical field evolution.</p>
+          <p><a href="#" target="_blank" rel="noopener">Paper →</a></p>
+        </article>
+        <article class="card span-4">
+          <h3>Teaching: Computational Physics</h3>
+          <p>Lecture notes and notebooks for numerical methods with Python.</p>
+          <p><a href="#" target="_blank" rel="noopener">Materials →</a></p>
+        </article>
+      </div>
+    </section>
+
+    <section id="publications">
+      <h2>Publications</h2>
+      <ul>
+        <li><strong>Ultralight fuzzy dark matter review</strong>, Journal/ArXiv, 2025. <a href="#">PDF</a> · <a href="#">arXiv</a></li>
+        <li><strong>Caustic fringes for wave dark matter</strong>, 2025. <a href="#">PDF</a> · <a href="#">arXiv</a></li>
+        <li><strong>Classical field approximation of ultralight dark matter</strong>, Phys. Rev. D, 2024. <a href="#">Publisher</a> · <a href="#">arXiv</a></li>
+      </ul>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p class="muted">For collaborations, speaking, or questions, feel free to reach out.</p>
+      <div class="grid">
+        <div class="card span-6">
+          <h3>Email</h3>
+          <p><a href="mailto:you@university.edu">you@university.edu</a></p>
+        </div>
+        <div class="card span-6">
+          <h3>Elsewhere</h3>
+          <p>
+            <a href="https://github.com/yourname" target="_blank" rel="noopener">GitHub</a> ·
+            <a href="https://scholar.google.com" target="_blank" rel="noopener">Scholar</a> ·
+            <a href="https://orcid.org" target="_blank" rel="noopener">ORCID</a> ·
+            <a href="https://twitter.com" target="_blank" rel="noopener">Twitter</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <small>© <span id="year"></span> Your Name. Built with vanilla HTML/CSS/JS. Hosted on GitHub Pages.</small>
+      </div>
+    </footer>
+  </main>
+
+  <!-- JSON-LD Schema for Person -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Your Name",
+    "url": "https://yourname.github.io",
+    "sameAs": [
+      "https://github.com/yourname",
+      "https://scholar.google.com/citations?user=XXXX",
+      "https://orcid.org/0000-0000-0000-0000"
+    ],
+    "jobTitle": "Postdoctoral Researcher",
+    "affiliation": {
+      "@type": "Organization",
+      "name": "Your Institute"
+    }
+  }
+  </script>
+
+  <script>
+    // Set year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Theme toggle
+    const toggle = document.getElementById('themeToggle');
+    const key = 'site-theme';
+    function applyTheme(t){ document.documentElement.dataset.theme = t; if (t==='light'){document.documentElement.style.setProperty('--bg','#ffffff');} }
+    const saved = localStorage.getItem(key);
+    if (saved) document.documentElement.dataset.theme = saved;
+    toggle.addEventListener('click', () => {
+      const next = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+      document.documentElement.dataset.theme = next;
+      localStorage.setItem(key, next);
+      toggle.setAttribute('aria-pressed', String(next !== 'light'));
+    });
+  </script>
+</body>
+</html>
